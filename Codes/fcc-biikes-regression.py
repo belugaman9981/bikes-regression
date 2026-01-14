@@ -17,11 +17,6 @@ df.head()
 
 
 
-
-
-
-
-
 """ Dataset:    
     
     Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
