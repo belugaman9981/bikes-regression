@@ -8,8 +8,8 @@ from   sklearn.linear_model  import LinearRegression
 from   sklearn.preprocessing import StandardScaler
 
 
-
-
+dataset_cols = ["bike_count", "hour", "temperature", "humidity", "wind", "visibility", "dew_pt_temp", "radiation", "rain", "snow", "functional"]
+df = pd.read_csv("SeoulBikeData.csv")
 
 
 
