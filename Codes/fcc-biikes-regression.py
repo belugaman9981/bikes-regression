@@ -9,7 +9,11 @@ from   sklearn.preprocessing import StandardScaler
 
 
 dataset_cols = ["bike_count", "hour", "temperature", "humidity", "wind", "visibility", "dew_pt_temp", "radiation", "rain", "snow", "functional"]
-df = pd.read_csv("SeoulBikeData.csv")
+df = pd.read_csv("SeoulBikeData.csv").drop(["Date", "Seasons", "Holiday", "Functioning Day"], axis=1)
+
+df.columns = dataset_cols
+
+df.head()
 
 
 
@@ -18,11 +22,7 @@ df = pd.read_csv("SeoulBikeData.csv")
 
 
 
-
-
-
-
-""" Dataset:
+""" Dataset:    
     
     Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
     [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, 
