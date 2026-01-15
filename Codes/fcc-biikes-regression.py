@@ -12,6 +12,7 @@ dataset_cols = ["bike_count", "hour", "temperature", "humidity", "wind", "visibi
 df = pd.read_csv("SeoulBikeData.csv").drop(["Date", "Seasons", "Holiday", "Functioning Day"], axis=1)
 
 df.columns = dataset_cols
+df["functional"] = (df["functional"] == "Yes").astype(int)
 
 df.head()
 
