@@ -13,6 +13,9 @@ df = pd.read_csv("SeoulBikeData.csv").drop(["Date", "Seasons", "Holiday", "Funct
 
 df.columns = dataset_cols
 df["functional"] = (df["functional"] == "Yes").astype(int)
+df = df[df["hour"] == 12]
+df = df.drop(["hour"], axis=1)
+
 
 df.head()
 
