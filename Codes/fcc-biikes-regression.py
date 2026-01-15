@@ -20,6 +20,13 @@ df = df.drop(["hour"], axis=1)
 df.head()
 
 
+for label in df.columns[1:]:
+    plt.scatter(df[label], df["bike_count"])
+    plt.title(label)
+    plt.ylabel("bike_count noon")
+    plt.xlabel(label)
+    plt.show()
+    
 
 """ Dataset:    
     
