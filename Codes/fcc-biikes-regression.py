@@ -12,8 +12,23 @@ dataset_cols = ["bike_count", "hour", "temperature", "humidity", "wind", "visibi
 df = pd.read_csv("SeoulBikeData.csv").drop(["Date", "Seasons", "Holiday", "Functioning Day"], axis=1)
 
 df.columns = dataset_cols
+df["functional"] = (df["functional"] == "Yes").astype(int)
+df = df[df["hour"] == 12]
+df = df.drop(["hour"], axis=1)
+
 
 df.head()
+
+
+for label in df.columns[1:]:
+    plt.scatter(df[label], df["bike_count"])
+    plt.title(label)
+    plt.ylabel("bike_count noon")
+    plt.xlabel(label)
+    plt.show()
+    
+
+
 
 
 
@@ -25,3 +40,4 @@ df.head()
     
     Source: Data Source: http://data.seoul.go.kr/ SOUTH KOREA PUBLIC HOLIDAYS. URL: publicholidays.go.kr """
     
+
