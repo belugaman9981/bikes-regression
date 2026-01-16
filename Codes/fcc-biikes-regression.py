@@ -51,13 +51,13 @@ def get_xy(dataframe, y_label, x_labels= None):
         else:
             X = dataframe[x_labels].values
 
-    y = dataframe[y_label]
-    data =
+    y = dataframe[y_label].values.reshape(-1, 1)
+    data = np.hstack((X, y))
+
+    return data, X, y
         
 
-
-
-_, X_train, y_train = 
+_, X_train_temp, y_train_temp = get_xy(train, "bike_count", x_labels= ["temp"])
 
 """ Dataset:    
     
