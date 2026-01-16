@@ -50,6 +50,9 @@ def get_xy(dataframe, y_label, x_labels= None):
 
         else:
             X = dataframe[x_labels].values
+
+    y = dataframe[y_label]
+    data =
         
 
 
