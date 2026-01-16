@@ -58,6 +58,8 @@ def get_xy(dataframe, y_label, x_labels= None):
         
 
 _, X_train_temp, y_train_temp = get_xy(train, "bike_count", x_labels= ["temp"])
+_, X_train_val,  y_train_val  = get_xy(val,   "bike_count", x_labels= ["temp"])
+_, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
 
 """ Dataset:    
     
