@@ -39,8 +39,6 @@ train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))
 
 
 
-
-
 """ Dataset:    
     
     Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
