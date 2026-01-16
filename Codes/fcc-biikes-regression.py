@@ -65,7 +65,7 @@ _, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
 temp_reg = LinearRegression()
 temp_reg.fit(X_train_temp, y_train_temp)
 
-
+print(temp_reg.coef_, temp_reg.intercept_)
 
 
 
