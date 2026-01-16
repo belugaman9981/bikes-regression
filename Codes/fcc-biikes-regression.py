@@ -28,6 +28,15 @@ for label in df.columns[1:]:
     plt.show()
     
 
+df = df.drop(["wind", "visibility", "functional"], axis=1)
+
+df.head()
+
+
+# train-test valid
+
+train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
+
 
 
 
