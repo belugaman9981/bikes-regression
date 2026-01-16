@@ -38,6 +38,23 @@ df.head()
 train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
 
 
+def get_xy(dataframe, y_label, x_labels= None):
+    dataframe = copy.deepcopy(dataframe)
+
+    if not x_labels:
+        X = dataframe[[c for c in dataframe.columns if c != y_label]].values
+
+    else:
+        if len(x_labels) == 1:
+            X = dataframe[[x_labels]].values
+
+        else:
+            X = dataframe[x_labels].values
+        
+
+
+
+_, X_train, y_train = 
 
 """ Dataset:    
     
