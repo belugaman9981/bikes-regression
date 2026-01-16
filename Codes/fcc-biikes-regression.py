@@ -62,6 +62,12 @@ _, X_train_val,  y_train_val  = get_xy(val,   "bike_count", x_labels= ["temp"])
 _, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
 
 
+temp_reg = LinearRegression()
+temp_reg.fit(X_train_temp, y_train_temp)
+
+
+
+
 
 """ Dataset:    
     
