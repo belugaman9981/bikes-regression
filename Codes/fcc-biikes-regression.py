@@ -225,6 +225,7 @@ history = nn_model.fit(X_train_all, y_train_all,
                        verbose= 0, epochs= 100
 )
 
+plot_history(history)
 
 
 """ Dataset:    
