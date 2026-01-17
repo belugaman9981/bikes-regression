@@ -179,6 +179,7 @@ nn_model = tf.keras.Sequential([
     temp_norm,
     tf.keras.layers.Dense(32, activation= 'relu'),
     tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(32, activation= 'relu'),
     tf.keras.layers.Dense(1)
     
 ])
@@ -201,6 +202,22 @@ plt.title("Bikes vs Temp")
 plt.ylabel("Bike Count")
 plt.xlabel("Temperature (C)")
 plt.show()
+
+nn_model = tf.keras.Sequential([
+    temp_norm,
+    tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(1)
+    
+])
+
+nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
+                          loss= 'mean_squared_error')
+
+
+
+
 
 
 """ Dataset:    
