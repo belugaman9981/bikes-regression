@@ -65,18 +65,23 @@ _, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
 temp_reg = LinearRegression()
 temp_reg.fit(X_train_temp, y_train_temp)
 
+
 temp_reg.score(X_train_test, y_train_test)
+
 
 # time: 2:50:00
 
 plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
 x = tf.linspace(-20, 40, 100)
+
 plt.plot(x, temp_reg.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+
 plt.legend()
 plt.title("Bikes vs Temp (NN)")
 plt.ylabel("Bike Count")
 plt.xlabel("Temperature (C)")
 plt.show()
+
 
 
 df.head()
@@ -175,85 +180,8 @@ history = temp_model.fit(X_train_temp, y_train_temp,
                          validation_data= (X_train_temp, y_train_temp))
 
 
-# Neural Net
-
-nn_model = tf.keras.Sequential([
-    temp_norm,
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(1)
-    
-])
-
-nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
-                          loss= 'mean_squared_error')
-
-history = nn_model.fit(X_train_temp, y_train_temp,
-                       validation_data= (X_train_val, y_train_val),
-                       verbose=0, epochs= 100
-)
-
-plot_history(history)
-
-plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
-x = tf.linspace(-20, 40, 100)
-plt.plot(x, nn_model.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
-plt.legend()
-plt.title("Bikes vs Temp")
-plt.ylabel("Bike Count")
-plt.xlabel("Temperature (C)")
-plt.show()
-
-all_norm = tf.keras.layers.Normalization(input_shape= [6,], axis= 1)
-all_norm.adapt(X_train_all)
 
 
-nn_model = tf.keras.Sequential([
-    all_norm,
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(1)
-    
-])
-
-nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
-                          loss= 'mean_squared_error')
-
-
-history = nn_model.fit(X_train_all, y_train_all,
-                       validation_data= (X_train_val, y_train_val),
-                       verbose= 0, epochs= 100
-)
-
-plot_history(history)
-
-
-# calculate the MSE for both linear reg and nn
-y_pred_lr = all_reg.predict(X_train_all)
-y_pred_nn = nn_model.predict(X_train_all)
-
-
-def MSE(y_pred, y_real):
-    return (np.square(y_pred - y_real)).mean()
-
-
-MSE(y_pred_lr, y_train_all)
-
-MSE(y_pred_nn, y_train_all)
-
-
-ax = plt.axes(aspect="equal")
-plt.scatter(y_train_all, y_pred_lr, label="Lin Reg Preds")
-plt.scatter(y_train_all, y_pred_nn, label="NN Preds")
-plt.xlabel("True Values")
-plt.ylabel("Predictions")
-lims = [0, 1800]
-plt.xlim(lims)
-plt.ylim(lims)
-plt.legend()
-_ = plt.plot(lims, lims, c="red")
 
 """ Dataset:    
     
