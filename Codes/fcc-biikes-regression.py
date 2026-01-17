@@ -235,7 +235,10 @@ y_pred_lr = all_reg.predict(X_train_all)
 y_pred_nn = nn_model.predict(X_train_all)
 
 
+def MSE(y_pred, y_real):
+    return (np.square(y_pred - y_real)).mean()
 
+MSE(y_pred_lr, y_train_all)
 
 
 
