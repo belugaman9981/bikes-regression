@@ -193,7 +193,14 @@ history = nn_model.fit(X_train_temp, y_train_temp,
 
 plot_history(history)
 
-
+plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
+x = tf.linspace(-20, 40, 100)
+plt.plot(x, nn_model.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+plt.legend()
+plt.title("Bikes vs Temp")
+plt.ylabel("Bike Count")
+plt.xlabel("Temperature (C)")
+plt.show()
 
 
 """ Dataset:    
