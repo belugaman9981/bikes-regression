@@ -186,6 +186,13 @@ nn_model = tf.keras.Sequential([
 nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
                           loss= 'mean_squared_error')
 
+history = nn_model.fit(X_train_temp, y_train_temp,
+                       validation_data= (X_train_val, y_train_val),
+                       verbose=0, epochs= 100
+)
+
+plot_history(history)
+
 
 
 
