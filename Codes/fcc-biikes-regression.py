@@ -79,6 +79,13 @@ plt.xlabel("Temperature (C)")
 plt.show()
 
 
+# Multiple Linear Regression
+
+
+_, X_train_temp, y_train_temp = get_xy(train, "bike_count", x_labels= df.columns[1:])
+_, X_train_val,  y_train_val  = get_xy(val,   "bike_count", x_labels= df.columns[1:])
+_, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= df.columns[1:])
+
 
 """ Dataset:    
     
