@@ -124,6 +124,16 @@ history = temp_model.fit(X_train_temp, y_train_temp,
                          validation_data= (X_train_temp, y_train_temp))
 
 
+plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
+x = tf.linspace(-20, 40, 100)
+plt.plot(x, temp_model.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+plt.legend()
+plt.title("Bikes vs Temp (NN)")
+plt.ylabel("Bike Count")
+plt.xlabel("Temperature (C)")
+plt.show()
+
+
 """ Dataset:    
     
     Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
