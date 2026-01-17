@@ -94,10 +94,16 @@ all_reg.fit(X_train_all, y_train_all)
 all_reg.score(X_train_all, y_train_all)
 
 
+# Reggression With Neural Networks
 
+temp_norm = tf.keras.layers.Normalization(input_shape= [1,], axis= None)
+temp_norm.adapt(X_train_temp.reshape(-1))
 
-
-
+temp_model = tf.keras.Sequential([
+    temp_norm,
+    tf.keras.layers.Dense(1)
+    
+])
 
 
 
