@@ -220,7 +220,10 @@ nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
                           loss= 'mean_squared_error')
 
 
-
+history = nn_model.fit(X_train_all, y_train_all,
+                       validation_data= (X_train_val, y_train_val),
+                       verbose= 0, epochs= 100
+)
 
 
 
