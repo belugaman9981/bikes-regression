@@ -203,12 +203,12 @@ plt.ylabel("Bike Count")
 plt.xlabel("Temperature (C)")
 plt.show()
 
-temp_norm = tf.keras.layers.Normalization(input_shape= [6,1], axis= 1)
-temp_norm.adapt(X_train_temp.all)
+all_norm = tf.keras.layers.Normalization(input_shape= [6,1], axis= 1)
+all_norm.adapt(X_train_all)
 
 
 nn_model = tf.keras.Sequential([
-    temp_norm,
+    all_norm,
     tf.keras.layers.Dense(32, activation= 'relu'),
     tf.keras.layers.Dense(32, activation= 'relu'),
     tf.keras.layers.Dense(32, activation= 'relu'),
