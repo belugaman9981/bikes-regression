@@ -41,7 +41,7 @@ train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))
 def get_xy(dataframe, y_label, x_labels= None):
     dataframe = copy.deepcopy(dataframe)
 
-    if not x_labels:
+    if x_labels is None:
         X = dataframe[[c for c in dataframe.columns if c != y_label]].values
 
     else:
