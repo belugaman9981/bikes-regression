@@ -65,20 +65,24 @@ _, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
 temp_reg = LinearRegression()
 temp_reg.fit(X_train_temp, y_train_temp)
 
-temp_reg.score(X_test, y_test)
+
+temp_reg.score(X_train_test, y_train_test)
+
 
 # time: 2:50:00
 
 plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
 x = tf.linspace(-20, 40, 100)
-plt.plot(x, temp_model.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+
+plt.plot(x, temp_reg.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+
 plt.legend()
 plt.title("Bikes vs Temp (NN)")
 plt.ylabel("Bike Count")
 plt.xlabel("Temperature (C)")
 plt.show()
 
-<<<<<<< FourthPartofLesson
+
 
 df.head()
 
@@ -144,6 +148,8 @@ all_reg.fit(X_train_all, y_train_all)
 
 all_reg.score(X_train_all, y_train_all)
 
+y_pred_lr = all_reg.predict(X_train_all)
+
 
 # Reggression With Neural Networks
 
@@ -166,14 +172,14 @@ temp_model = tf.keras.Sequential([
     
 ])
 
-temp_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.10),
+temp_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.01),
                        loss= 'mean_squared_error')
 
 history = temp_model.fit(X_train_temp, y_train_temp, 
                          epochs= 1000, verbose=0, 
                          validation_data= (X_train_temp, y_train_temp))
-=======
->>>>>>> main
+
+
 
 
 
@@ -185,4 +191,3 @@ history = temp_model.fit(X_train_temp, y_train_temp,
     
     Source: Data Source: http://data.seoul.go.kr/ SOUTH KOREA PUBLIC HOLIDAYS. URL: publicholidays.go.kr """
     
-
