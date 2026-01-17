@@ -165,12 +165,26 @@ temp_model = tf.keras.Sequential([
     
 ])
 
-temp_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.10),
+temp_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.01),
                        loss= 'mean_squared_error')
 
 history = temp_model.fit(X_train_temp, y_train_temp, 
                          epochs= 1000, verbose=0, 
                          validation_data= (X_train_temp, y_train_temp))
+
+
+# Neural Net
+
+nn_model = tf.keras.Sequential([
+    temp_norm,
+    tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(32, activation= 'relu'),
+    tf.keras.layers.Dense(1,  activation= 'relu')
+    
+])
+
+nn_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.001),
+                          loss= 'mean_squared_error')
 
 
 
