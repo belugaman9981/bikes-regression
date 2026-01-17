@@ -179,7 +179,7 @@ nn_model = tf.keras.Sequential([
     temp_norm,
     tf.keras.layers.Dense(32, activation= 'relu'),
     tf.keras.layers.Dense(32, activation= 'relu'),
-    tf.keras.layers.Dense(1,  activation= 'relu')
+    tf.keras.layers.Dense(1)
     
 ])
 
