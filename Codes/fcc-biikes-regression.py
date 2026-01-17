@@ -41,6 +41,55 @@ train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))
 def get_xy(dataframe, y_label, x_labels= None):
     dataframe = copy.deepcopy(dataframe)
 
+    if not x_labels:
+        X = dataframe[[c for c in dataframe.columns if c != y_label]].values
+
+    else:
+        if len(x_labels) == 1:
+            X = dataframe[[x_labels]].values
+
+        else:
+            X = dataframe[x_labels].values
+
+    y = dataframe[y_label].values.reshape(-1, 1)
+    data = np.hstack((X, y))
+
+    return data, X, y
+        
+
+_, X_train_temp, y_train_temp = get_xy(train, "bike_count", x_labels= ["temp"])
+_, X_train_val,  y_train_val  = get_xy(val,   "bike_count", x_labels= ["temp"])
+_, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
+
+
+temp_reg = LinearRegression()
+temp_reg.fit(X_train_temp, y_train_temp)
+
+temp_reg.score(X_train_test, y_train_test)
+
+# time: 2:50:00
+
+plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
+x = tf.linspace(-20, 40, 100)
+plt.plot(x, temp_reg.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
+plt.legend()
+plt.title("Bikes vs Temp (NN)")
+plt.ylabel("Bike Count")
+plt.xlabel("Temperature (C)")
+plt.show()
+
+
+df.head()
+
+
+# train-test valid
+
+train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
+
+
+def get_xy(dataframe, y_label, x_labels= None):
+    dataframe = copy.deepcopy(dataframe)
+
     if x_labels is None:
         X = dataframe[[c for c in dataframe.columns if c != y_label]].values
 
@@ -124,14 +173,6 @@ history = temp_model.fit(X_train_temp, y_train_temp,
                          validation_data= (X_train_temp, y_train_temp))
 
 
-plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
-x = tf.linspace(-20, 40, 100)
-plt.plot(x, temp_model.predict(np.array(x).reshape(-1, 1)), label= "Fit", color= 'red', linewidth= 3)
-plt.legend()
-plt.title("Bikes vs Temp (NN)")
-plt.ylabel("Bike Count")
-plt.xlabel("Temperature (C)")
-plt.show()
 
 
 """ Dataset:    
@@ -142,4 +183,3 @@ plt.show()
     
     Source: Data Source: http://data.seoul.go.kr/ SOUTH KOREA PUBLIC HOLIDAYS. URL: publicholidays.go.kr """
     
-
