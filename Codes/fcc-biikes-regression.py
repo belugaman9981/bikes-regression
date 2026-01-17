@@ -205,7 +205,7 @@ plt.ylabel("Bike Count")
 plt.xlabel("Temperature (C)")
 plt.show()
 
-all_norm = tf.keras.layers.Normalization(input_shape= [6,1], axis= 1)
+all_norm = tf.keras.layers.Normalization(input_shape= [6,], axis= 1)
 all_norm.adapt(X_train_all)
 
 
@@ -238,8 +238,10 @@ y_pred_nn = nn_model.predict(X_train_all)
 def MSE(y_pred, y_real):
     return (np.square(y_pred - y_real)).mean()
 
+
 MSE(y_pred_lr, y_train_all)
 
+MSE(y_pred_nn, y_test_all)
 
 
 
