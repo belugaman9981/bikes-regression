@@ -84,6 +84,7 @@ plt.show()
 
 train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
 
+
 _, X_train_all, y_train_all  = get_xy(train, "bike_count", x_labels= df.columns[1:])
 _, X_train_all, y_train_all  = get_xy(val,   "bike_count", x_labels= df.columns[1:])
 _, X_train_all, y_train_all  = get_xy(test,  "bike_count", x_labels= df.columns[1:])
@@ -96,6 +97,16 @@ all_reg.score(X_train_all, y_train_all)
 
 # Reggression With Neural Networks
 
+def plot_history(history):
+    plt.plot(history.history['loss'], label='loss')
+    plt.plot(history.history['val_loss'], label='val_loss')
+    plt.set_xlabel('Epoch')
+    plt.set_ylabel('MSE')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
 temp_norm = tf.keras.layers.Normalization(input_shape= [1,], axis= None)
 temp_norm.adapt(X_train_temp.reshape(-1))
 
@@ -105,6 +116,12 @@ temp_model = tf.keras.Sequential([
     
 ])
 
+temp_model.compile(optimizer= tf.keras.optimizers.Adam(learning_rate= 0.10),
+                       loss= 'mean_squared_error')
+
+history = temp_model.fit(X_train_temp, y_train_temp, 
+                         epochs= 1000, verbose=0, 
+                         validation_data= (X_train_temp, y_train_temp))
 
 
 """ Dataset:    
