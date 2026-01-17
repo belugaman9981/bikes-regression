@@ -69,6 +69,9 @@ temp_reg.score(X_train_test, y_train_test)
 
 # time: 2:50:00
 
+plt.scatter(X_train_temp, y_train_temp, label= "Data", color='blue')
+x = tf.linspace(-20, 40, 100)
+plt.plot(x, temp_reg.predict(x), label= "Fit", color= 'red', linewidth= 3)
 
 
 
