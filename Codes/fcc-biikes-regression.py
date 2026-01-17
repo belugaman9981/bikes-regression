@@ -82,14 +82,16 @@ plt.show()
 # Multiple Linear Regression
 
 
+train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
+
 _, X_train_all, y_train_all  = get_xy(train, "bike_count", x_labels= df.columns[1:])
 _, X_train_all, y_train_all  = get_xy(val,   "bike_count", x_labels= df.columns[1:])
 _, X_train_all, y_train_all  = get_xy(test,  "bike_count", x_labels= df.columns[1:])
 
+all_reg = LinearRegression()
+all_reg.fit(X_train_all, y_train_all)
 
-
-
-
+all_reg.score(X_train_all, y_train_all)
 
 
 
