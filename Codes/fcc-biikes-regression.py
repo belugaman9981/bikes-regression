@@ -28,6 +28,46 @@ for label in df.columns[1:]:
     plt.show()
     
 
+df = df.drop(["wind", "visibility", "functional"], axis=1)
+
+df.head()
+
+
+# train-test valid
+
+train, val, test = np.split(df.sample(frac=1), [int(.6*len(df)), int(.8*len(df))])
+
+
+def get_xy(dataframe, y_label, x_labels= None):
+    dataframe = copy.deepcopy(dataframe)
+
+    if not x_labels:
+        X = dataframe[[c for c in dataframe.columns if c != y_label]].values
+
+    else:
+        if len(x_labels) == 1:
+            X = dataframe[[x_labels]].values
+
+        else:
+            X = dataframe[x_labels].values
+
+    y = dataframe[y_label].values.reshape(-1, 1)
+    data = np.hstack((X, y))
+
+    return data, X, y
+        
+
+_, X_train_temp, y_train_temp = get_xy(train, "bike_count", x_labels= ["temp"])
+_, X_train_val,  y_train_val  = get_xy(val,   "bike_count", x_labels= ["temp"])
+_, X_train_test, y_train_test = get_xy(test,  "bike_count", x_labels= ["temp"])
+
+
+temp_reg = LinearRegression()
+temp_reg.fit(X_train_temp, y_train_temp)
+
+temp_reg.score(X_test, y_test)
+
+# time: 2:50:00
 
 
 
