@@ -143,6 +143,8 @@ all_reg.fit(X_train_all, y_train_all)
 
 all_reg.score(X_train_all, y_train_all)
 
+y_pred_lr = all_reg.predict(X_train_all)
+
 
 # Reggression With Neural Networks
 
@@ -226,6 +228,16 @@ history = nn_model.fit(X_train_all, y_train_all,
 )
 
 plot_history(history)
+
+
+# calculate the MSE for both linear reg and nn
+y_pred_lr = all_reg.predict(X_train_all)
+y_pred_nn = nn_model.predict(X_train_all)
+
+
+
+
+
 
 
 """ Dataset:    
